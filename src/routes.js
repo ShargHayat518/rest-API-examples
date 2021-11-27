@@ -19,6 +19,10 @@ module.exports.register = (app, database) => {
         // else {
         //     query = database.query('SELECT * FROM tools');
         // }
+
+        console.log(query);
+        const emps = await query;
+        res.status(200).send(JSON.stringify(emps)).end();
     });
 
 
