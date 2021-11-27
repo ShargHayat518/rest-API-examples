@@ -8,16 +8,17 @@ module.exports.register = (app, database) => {
 
     app.get('/api/tools', async (req, res) => {
         console.log('Requesting tools...');
+        query = database.query('SELECT * FROM tools');
 
-        let query;
-        if (req.query.name){
-            let _name = req.query.name;
-            query = database.query(`select * from tools where name = ${_name}`);
-        }
+        // let query;
+        // if (req.query.name){
+        //     let _name = req.query.name;
+        //     query = database.query(`select * from tools where name = ${_name}`);
+        // }
 
-        else {
-            query = database.query('SELECT * FROM tools');
-        }
+        // else {
+        //     query = database.query('SELECT * FROM tools');
+        // }
     });
 
 
