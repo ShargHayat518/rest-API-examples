@@ -6,6 +6,29 @@ module.exports.register = (app, database) => {
         res.status(200).send("You did it! I am now running:) ").end();
     });
 
+
+
+    app.get('/api/tools', async (req, res) => {
+        console.log('Requesting tools...');
+        
+        let query;
+        if (req.query.id){
+            let _id = req.query.id;
+            query = database.query('select * from tools where id = ?',[_id]);
+        }
+
+        else {
+            query = database.query('SELECT * FROM tools');
+        }
+
+        console.log(query);
+        const emps = await query;
+        res.status(200).send(JSON.stringify(emps)).end();
+    });
+
+
+
+
     app.get('/api/tools/:id', async (req, res) => {
         console.log('Requesting tools...');
 
@@ -42,7 +65,7 @@ module.exports.register = (app, database) => {
             );
         } else {
             query = database.query(
-                'SELECT * FROM rest_emp'
+                'SELECT * FROM tools'
             );
         }
         console.log(query);
